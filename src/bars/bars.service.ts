@@ -1,18 +1,32 @@
-import { Injectable } from '@nestjs/common';
-import { SupabaseService } from '../supabase/supabase.service';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { BarRepository } from './bars.repository';
+import { CreateBarDto, UpdateBarDto } from './dtos/bars.dto';
 
 @Injectable()
 export class BarService {
-  constructor(private supabaseService: SupabaseService) {}
+  constructor(private repository: BarRepository) {}
 
-  async createBar(name: string, location: string) {
-    const { data, error } = await this.supabaseService
-      .getClient()
-      .from('bars')
-      .insert([{ name, location }])
-      .select();
+  async create(dto: CreateBarDto) {
+    return this.repository.create(dto);
+  }
 
-    if (error) throw error;
-    return data;
+  async findAll() {
+    return this.repository.findAll();
+  }
+
+  async findById(id: number) {
+    const bar = await this.repository.findById(id);
+    if (!bar) throw new NotFoundException(`Bar with id ${id} not found`);
+    return bar;
+  }
+
+  async update(id: number, dto: UpdateBarDto) {
+    await this.findById(id);
+    return this.repository.update(id, dto);
+  }
+
+  async delete(id: number) {
+    await this.findById(id);
+    return this.repository.delete(id);
   }
 }

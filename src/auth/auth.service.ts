@@ -13,7 +13,9 @@ export class AuthService {
     private configService: ConfigService,
   ) {
     this.adminEmail = this.configService.get<string>('ADMIN_EMAIL') as string;
-    const adminPassword = this.configService.get<string>('ADMIN_PASSWORD') as string;
+    const adminPassword = this.configService.get<string>(
+      'ADMIN_PASSWORD',
+    ) as string;
     this.adminPasswordHash = bcrypt.hashSync(adminPassword, 10);
   }
 

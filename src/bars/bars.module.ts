@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 
-import { SupabaseModule } from '../supabase/supabase.module';
 import { BarService } from './bars.service';
-import { BarsController } from './bars.controller';
+
+import { PrismaModule } from 'src/prisma/prisma.module';
+import { BarController } from './bars.controller';
+import { BarRepository } from './bars.repository';
 
 @Module({
-  imports: [SupabaseModule],
-  providers: [BarService],
-  controllers: [BarsController],
+  imports: [PrismaModule],
+  providers: [BarService, BarRepository],
+  controllers: [BarController],
 })
 export class BarModule {}
