@@ -1,17 +1,45 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ErrorInterceptor } from './common/error.interceptor';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { LoggingInterceptor } from './common/loggin.interceptor';
+import { LoginInterceptor } from './interceptors/login.interceptor';
+import { ValidationPipe } from '@nestjs/common';
+import helmet from 'helmet';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalInterceptors(new LoggingInterceptor());
+
+
+  app.use(
+    helmet({
+      contentSecurityPolicy: false,
+    }),
+  );
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,             // Remove properties not in DTO
+      forbidNonWhitelisted: true,  // Throw error for unknown fields
+      transform: true,             // Automatically transform types
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
+
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
+
+  app.useGlobalInterceptors(new LoginInterceptor());
   app.useGlobalInterceptors(new ErrorInterceptor());
 
   const config = new DocumentBuilder()
-    .setTitle('Bar API')
-    .setDescription('CRUD API for Bar entity using Prisma')
+    .setTitle('Quis API')
+    .setDescription('CRUD API for Quis')
     .setVersion('1.0')
     .build();
 

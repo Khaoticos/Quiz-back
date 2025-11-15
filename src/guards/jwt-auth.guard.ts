@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
 import {

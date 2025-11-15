@@ -4,7 +4,7 @@ import { BarService } from './bars.service';
 
 import { PrismaModule } from 'src/prisma/prisma.module';
 import { BarController } from './bars.controller';
-import { BarRepository } from './bars.repository';
+import { BarRepository } from '../../repositories/bars.repository';
 
 @Module({
   imports: [PrismaModule],

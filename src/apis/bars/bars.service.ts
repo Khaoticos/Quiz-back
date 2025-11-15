@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { BarRepository } from './bars.repository';
+import { BarRepository } from '../../repositories/bars.repository';
 import { CreateBarDto, UpdateBarDto } from './dtos/bars.dto';
 
 @Injectable()

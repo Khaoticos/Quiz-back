@@ -8,8 +8,35 @@ generator client {
 }
 
 model Bar {
-  id        Int      @id @default(autoincrement())
-  name      String
-  description String?
-  createdAt DateTime @default(now())
+  id                Int      @id @default(autoincrement())
+  name              String
+  type              String
+  createdAt         DateTime @default(now())
+  fullDescription   String?
+  briefDescription  String?
+  openingHours      String?
+  address           String?
+  phone             String?
+  email             String?
+  customUrl         String?
+  quizes            Quiz[]
+  
+}
+
+
+model Quiz {
+    id                Int      @id @default(autoincrement())
+    title             String
+    establishmentId   Int
+    establishment     Bar @relation(fields: [establishmentId], references:[id]) 
+    description       String?
+    themeId           Int
+    theme             QuizTheme @relation(fields: [themeId], references:[id])
+    externalUrl       String
+}
+
+model QuizTheme {
+  id                Int      @id @default(autoincrement())
+  type              String   @unique
+  quizes            Quiz[]
 }

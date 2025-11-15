@@ -10,18 +10,19 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/common/jwt-auth.guard';
-import { BarService } from './bars.service';
-import { CreateBarDto, UpdateBarDto } from './dtos/bars.dto';
 
-@ApiTags('bars')
-@Controller('bars')
-export class BarController {
-  constructor(private service: BarService) {}
+import { QuizThemeService } from './quiz-theme.service';
+import { CreatQuizThemeDto, UpdateQuizThemeDto } from './dtos/quiz-theme.dto';
+import { JwtAuthGuard } from '../../guards/jwt-auth.guard';
+
+@ApiTags('quiz-theme')
+@Controller('quiz-theme')
+export class QuizThemeController {
+  constructor(private service: QuizThemeService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  create(@Body() dto: CreateBarDto) {
+  create(@Body() dto: CreatQuizThemeDto) {
     return this.service.create(dto);
   }
 
@@ -36,11 +37,13 @@ export class BarController {
   }
 
   @Put(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateBarDto) {
+  @UseGuards(JwtAuthGuard)
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateQuizThemeDto) {
     return this.service.update(id, dto);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   delete(@Param('id', ParseIntPipe) id: number) {
     return this.service.delete(id);
   }

@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module';
-import { BarModule } from './bars/bars.module';
+import { AuthModule } from './apis/auth/auth.module';
+import { BarModule } from './apis/bars/bars.module';
+import { QuizThemeModule } from './apis/quiz-theme/quiz-theme.module';
+import { QuizModule } from './apis/quiz/quiz.module';
 import { PrismaModule } from './prisma/prisma.module';
+
 
 @Module({
   imports: [
@@ -10,6 +13,8 @@ import { PrismaModule } from './prisma/prisma.module';
     PrismaModule,
     AuthModule,
     BarModule,
+    QuizThemeModule,
+    QuizModule
   ],
 })
 export class AppModule {}
