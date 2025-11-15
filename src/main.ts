@@ -6,10 +6,8 @@ import { LoginInterceptor } from './interceptors/login.interceptor';
 import { ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
 
-
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
 
   app.use(
     helmet({
@@ -19,9 +17,9 @@ async function bootstrap() {
 
   app.useGlobalPipes(
     new ValidationPipe({
-      whitelist: true,             // Remove properties not in DTO
-      forbidNonWhitelisted: true,  // Throw error for unknown fields
-      transform: true,             // Automatically transform types
+      whitelist: true, // Remove properties not in DTO
+      forbidNonWhitelisted: true, // Throw error for unknown fields
+      transform: true, // Automatically transform types
       transformOptions: {
         enableImplicitConversion: true,
       },
@@ -41,6 +39,15 @@ async function bootstrap() {
     .setTitle('Quis API')
     .setDescription('CRUD API for Quis')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+      },
+      'jwt-auth',
+    )
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

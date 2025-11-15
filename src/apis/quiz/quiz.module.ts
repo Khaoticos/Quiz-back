@@ -8,7 +8,6 @@ import { QuizRepository } from '../../repositories/quiz.repository';
 import { QuizThemeRepository } from 'src/repositories/quiz-theme.repository';
 import { BarRepository } from 'src/repositories/bars.repository';
 
-
 @Module({
   imports: [PrismaModule],
   providers: [QuizService, QuizRepository, QuizThemeRepository, BarRepository],

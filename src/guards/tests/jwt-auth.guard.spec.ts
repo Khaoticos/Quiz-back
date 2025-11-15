@@ -22,14 +22,13 @@ describe('JwtAuthGuard', () => {
         authorization: authorizationHeader,
       },
     };
-  
+
     return {
       switchToHttp: () => ({
-        getRequest: () => req, 
+        getRequest: () => req,
       }),
     } as any;
   };
-  
 
   beforeEach(async () => {
     jest.clearAllMocks();
@@ -69,19 +68,18 @@ describe('JwtAuthGuard', () => {
 
     it('should return true and set req.user when token is valid', () => {
       const payload = { id: 1, email: 'test@test.com' };
-    
+
       (jwt.verify as jest.Mock).mockReturnValue(payload);
-    
+
       const context = mockExecutionContext('Bearer valid.token');
-    
-      const req = context.switchToHttp().getRequest(); 
-    
+
+      const req = context.switchToHttp().getRequest();
+
       const result = guard.canActivate(context);
-    
+
       expect(result).toBe(true);
       expect(jwt.verify).toHaveBeenCalledWith('valid.token', 'test-secret');
       expect(req.user).toEqual(payload);
     });
-    
   });
 });

@@ -6,7 +6,6 @@ import { AuthService } from '../auth.service';
 
 describe('AuthController', () => {
   let controller: AuthController;
-  let authService: AuthService;
 
   const mockAuthService = {
     login: jest.fn(),
@@ -17,13 +16,10 @@ describe('AuthController', () => {
 
     const module: TestingModule = await Test.createTestingModule({
       controllers: [AuthController],
-      providers: [
-        { provide: AuthService, useValue: mockAuthService },
-      ],
+      providers: [{ provide: AuthService, useValue: mockAuthService }],
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
-    authService = module.get<AuthService>(AuthService);
   });
 
   describe('login', () => {
@@ -48,7 +44,9 @@ describe('AuthController', () => {
         new UnauthorizedException('Invalid credentials'),
       );
 
-      await expect(controller.login(dto)).rejects.toThrow(UnauthorizedException);
+      await expect(controller.login(dto)).rejects.toThrow(
+        UnauthorizedException,
+      );
     });
   });
 });

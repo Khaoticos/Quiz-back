@@ -38,7 +38,6 @@ describe('QuizController', () => {
     service = module.get(QuizService);
   });
 
-
   describe('create', () => {
     it('should call service.create with DTO', async () => {
       const dto: CreatQuizDto = {
@@ -55,7 +54,6 @@ describe('QuizController', () => {
       expect(service.create).toHaveBeenCalledWith(dto);
     });
   });
-
 
   describe('findAll', () => {
     it('should return all quizzes', async () => {
@@ -78,7 +76,6 @@ describe('QuizController', () => {
     });
   });
 
-
   describe('update', () => {
     it('should update quiz', async () => {
       const dto: UpdateQuizDto = { title: 'Updated' };
@@ -90,7 +87,6 @@ describe('QuizController', () => {
       expect(service.update).toHaveBeenCalledWith(1, dto);
     });
   });
-
 
   describe('delete', () => {
     it('should delete quiz', async () => {

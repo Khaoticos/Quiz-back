@@ -6,7 +6,6 @@ import { QuizThemeModule } from './apis/quiz-theme/quiz-theme.module';
 import { QuizModule } from './apis/quiz/quiz.module';
 import { PrismaModule } from './prisma/prisma.module';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -14,7 +13,7 @@ import { PrismaModule } from './prisma/prisma.module';
     AuthModule,
     BarModule,
     QuizThemeModule,
-    QuizModule
+    QuizModule,
   ],
 })
 export class AppModule {}

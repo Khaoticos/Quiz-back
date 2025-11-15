@@ -19,6 +19,11 @@ npm i
 npm run start:dev
 ```
 
+## Swagger | doc
+
+Após rodar o projeto, é possível visualizar a documentação no path: /api/docs
+
+ex.: http://localhost:3000/api/docs
 
 ## Formatação
 
@@ -54,6 +59,12 @@ Se quiser fazer uma migração, utilize o comando:
 
 ```bash
 npx prisma migrate dev --name migration-name
+```
+
+## Tests
+
+```bash
+npm run test
 ```
 
 ## Ambientes

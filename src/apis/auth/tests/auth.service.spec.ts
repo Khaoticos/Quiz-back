@@ -44,15 +44,21 @@ describe('AuthService', () => {
 
   describe('validateAdmin', () => {
     it('should return false if email does not match admin email', async () => {
-      expect(await service.validateAdmin('wrong@test.com', 'admin123')).toBe(false);
+      expect(await service.validateAdmin('wrong@test.com', 'admin123')).toBe(
+        false,
+      );
     });
 
     it('should return true with correct email and password', async () => {
-      expect(await service.validateAdmin('admin@test.com', 'admin123')).toBe(true);
+      expect(await service.validateAdmin('admin@test.com', 'admin123')).toBe(
+        true,
+      );
     });
 
     it('should return false for invalid password', async () => {
-      expect(await service.validateAdmin('admin@test.com', 'wrong')).toBe(false);
+      expect(await service.validateAdmin('admin@test.com', 'wrong')).toBe(
+        false,
+      );
     });
   });
 
@@ -66,9 +72,9 @@ describe('AuthService', () => {
     });
 
     it('should throw UnauthorizedException for invalid credentials', async () => {
-      await expect(service.login('admin@test.com', 'wrong'))
-        .rejects
-        .toThrow(UnauthorizedException);
+      await expect(service.login('admin@test.com', 'wrong')).rejects.toThrow(
+        UnauthorizedException,
+      );
     });
   });
 });

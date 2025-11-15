@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '../../prisma/prisma.service';
 import { BarRepository } from '../bars.repository';
 
-
 describe('BarRepository', () => {
   let repository: BarRepository;
   let prisma: jest.Mocked<PrismaService>;
@@ -30,7 +29,6 @@ describe('BarRepository', () => {
     prisma = module.get(PrismaService);
   });
 
-
   describe('create', () => {
     it('should create a bar', async () => {
       const dto = { name: 'Test Bar', type: 'Pub' } as any;
@@ -43,7 +41,6 @@ describe('BarRepository', () => {
       expect(result).toEqual({ id: 1, ...dto });
     });
   });
-
 
   describe('findAll', () => {
     it('should return all bars', async () => {
@@ -85,7 +82,6 @@ describe('BarRepository', () => {
     });
   });
 
-
   describe('update', () => {
     it('should update a bar', async () => {
       const dto = { name: 'Updated' } as any;
@@ -102,7 +98,6 @@ describe('BarRepository', () => {
       expect(result).toEqual(updatedBar);
     });
   });
-
 
   describe('delete', () => {
     it('should delete a bar', async () => {

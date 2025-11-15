@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '../../prisma/prisma.service';
 import { QuizThemeRepository } from '../quiz-theme.repository';
 
-
 describe('QuizThemeRepository', () => {
   let repository: QuizThemeRepository;
   let prisma: jest.Mocked<PrismaService>;
@@ -30,7 +29,6 @@ describe('QuizThemeRepository', () => {
     prisma = module.get(PrismaService);
   });
 
-
   describe('create', () => {
     it('should create a quizTheme', async () => {
       const dto = { type: 'History' } as any;
@@ -43,7 +41,6 @@ describe('QuizThemeRepository', () => {
       expect(result).toEqual({ id: 1, ...dto });
     });
   });
-
 
   describe('findAll', () => {
     it('should return all quizThemes', async () => {
@@ -85,7 +82,6 @@ describe('QuizThemeRepository', () => {
     });
   });
 
-
   describe('update', () => {
     it('should update a quizTheme', async () => {
       const dto = { type: 'History' } as any;
@@ -102,7 +98,6 @@ describe('QuizThemeRepository', () => {
       expect(result).toEqual(updatedquizTheme);
     });
   });
-
 
   describe('delete', () => {
     it('should delete a quizTheme', async () => {

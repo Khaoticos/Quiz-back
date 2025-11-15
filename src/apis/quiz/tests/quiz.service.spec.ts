@@ -101,7 +101,6 @@ describe('QuizService', () => {
     });
   });
 
-
   describe('findAll', () => {
     it('should return all quizzes', async () => {
       const quizzes = [{ id: 1 }, { id: 2 }];
@@ -113,7 +112,6 @@ describe('QuizService', () => {
       expect(result).toEqual(quizzes);
     });
   });
-
 
   describe('findById', () => {
     it('should return a quiz', async () => {
@@ -135,7 +133,6 @@ describe('QuizService', () => {
       );
     });
   });
-
 
   describe('update', () => {
     it('should update a quiz', async () => {
@@ -159,7 +156,6 @@ describe('QuizService', () => {
       );
     });
   });
-
 
   describe('delete', () => {
     it('should delete a quiz', async () => {

@@ -5,7 +5,6 @@ import { BarRepository } from '../../../repositories/bars.repository';
 import { BarService } from '../bars.service';
 import { CreateBarDto, UpdateBarDto } from '../dtos/bars.dto';
 
-
 describe('BarService', () => {
   let service: BarService;
   let repository: BarRepository;

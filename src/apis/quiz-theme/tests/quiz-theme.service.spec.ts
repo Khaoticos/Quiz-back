@@ -42,7 +42,6 @@ describe('QuizThemeService', () => {
     });
   });
 
-
   describe('findAll', () => {
     it('should return all quiz themes', async () => {
       const themes = [{ id: 1 }, { id: 2 }];
@@ -52,7 +51,6 @@ describe('QuizThemeService', () => {
       expect(repository.findAll).toHaveBeenCalled();
     });
   });
-
 
   describe('findById', () => {
     it('should return a quiz theme by ID', async () => {
@@ -72,7 +70,6 @@ describe('QuizThemeService', () => {
       );
     });
   });
-
 
   describe('update', () => {
     it('should update a quiz theme', async () => {
@@ -95,7 +92,6 @@ describe('QuizThemeService', () => {
       );
     });
   });
-
 
   describe('delete', () => {
     it('should delete a quiz theme', async () => {

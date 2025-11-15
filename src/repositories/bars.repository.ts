@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateBarDto, UpdateBarDto } from 'src/apis/bars/dtos/bars.dto';
 
-
 @Injectable()
 export class BarRepository {
   constructor(private prisma: PrismaService) {}
@@ -16,7 +15,10 @@ export class BarRepository {
   }
 
   findById(id: number) {
-    return this.prisma.bar.findUnique({ where: { id }, include: {quizes: true} });
+    return this.prisma.bar.findUnique({
+      where: { id },
+      include: { quizes: true },
+    });
   }
 
   update(id: number, data: UpdateBarDto) {

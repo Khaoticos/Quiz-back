@@ -47,14 +47,11 @@ describe('LogingInterceptor', () => {
       expect(result).toEqual(responseData);
 
       // Check request log
-      expect(consoleSpy).toHaveBeenCalledWith(
-        `API::REQUEST:: [GET /test]`,
-        {
-          params: mockRequest.params,
-          query: mockRequest.query,
-          body: mockRequest.body,
-        }
-      );
+      expect(consoleSpy).toHaveBeenCalledWith(`API::REQUEST:: [GET /test]`, {
+        params: mockRequest.params,
+        query: mockRequest.query,
+        body: mockRequest.body,
+      });
 
       // Check response log
       expect(consoleSpy).toHaveBeenCalledWith(

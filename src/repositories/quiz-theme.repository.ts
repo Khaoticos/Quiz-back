@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreatQuizThemeDto, UpdateQuizThemeDto } from 'src/apis/quiz-theme/dtos/quiz-theme.dto';
-
+import {
+  CreatQuizThemeDto,
+  UpdateQuizThemeDto,
+} from 'src/apis/quiz-theme/dtos/quiz-theme.dto';
 
 @Injectable()
 export class QuizThemeRepository {
@@ -16,7 +18,10 @@ export class QuizThemeRepository {
   }
 
   findById(id: number) {
-    return this.prisma.quizTheme.findUnique({ where: { id }, include: {quizes: true} });
+    return this.prisma.quizTheme.findUnique({
+      where: { id },
+      include: { quizes: true },
+    });
   }
 
   update(id: number, data: UpdateQuizThemeDto) {

@@ -27,12 +27,10 @@ export class CreateBarDto {
   @IsString()
   openingHours?: string;
 
-
   @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
   address?: string;
-
 
   @ApiProperty({ required: false })
   @IsOptional()
