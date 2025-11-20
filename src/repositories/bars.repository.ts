@@ -7,6 +7,9 @@ export class BarRepository {
   constructor(private prisma: PrismaService) {}
 
   create(data: CreateBarDto) {
+    Object.keys(data).forEach(
+      (key) => data[key] === undefined && delete data[key],
+    );
     return this.prisma.bar.create({ data });
   }
 

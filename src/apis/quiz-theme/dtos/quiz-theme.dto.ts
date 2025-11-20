@@ -5,6 +5,16 @@ export class CreatQuizThemeDto {
   @ApiProperty()
   @IsString()
   type: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  description?: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  imageId?: string;
 }
 
 export class UpdateQuizThemeDto extends PartialType(CreatQuizThemeDto) {}

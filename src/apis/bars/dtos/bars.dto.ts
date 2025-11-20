@@ -15,12 +15,7 @@ export class CreateBarDto {
   @ApiProperty({ required: false })
   @IsOptional()
   @IsString()
-  fullDescription?: string;
-
-  @ApiProperty({ required: false })
-  @IsOptional()
-  @IsString()
-  briefDescription?: string;
+  description?: string;
 
   @ApiProperty({ required: false })
   @IsOptional()
@@ -46,6 +41,11 @@ export class CreateBarDto {
   @IsOptional()
   @IsString()
   customUrl?: string;
+
+  @ApiProperty({ required: false })
+  @IsOptional()
+  @IsString()
+  imageId?: string;
 }
 
 export class UpdateBarDto extends PartialType(CreateBarDto) {}

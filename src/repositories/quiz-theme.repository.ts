@@ -10,6 +10,9 @@ export class QuizThemeRepository {
   constructor(private prisma: PrismaService) {}
 
   create(data: CreatQuizThemeDto) {
+    Object.keys(data).forEach(
+      (key) => data[key] === undefined && delete data[key],
+    );
     return this.prisma.quizTheme.create({ data });
   }
 

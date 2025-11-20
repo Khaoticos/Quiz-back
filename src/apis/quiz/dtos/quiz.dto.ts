@@ -7,16 +7,28 @@ export class CreatQuizDto {
   title: string;
 
   @ApiProperty()
+  @IsOptional()
   @IsNumber()
-  establishmentId: number;
+  establishmentId?: number;
 
   @ApiProperty()
+  @IsOptional()
   @IsNumber()
-  themeId: number;
+  themeId?: number;
 
   @ApiProperty()
   @IsString()
   externalUrl: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  imageId?: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  description?: string;
 }
 
 export class UpdateQuizDto extends PartialType(CreatQuizDto) {}

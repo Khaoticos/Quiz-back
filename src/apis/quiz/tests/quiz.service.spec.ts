@@ -69,7 +69,7 @@ describe('QuizService', () => {
       expect(result).toEqual({ id: 10, ...dto });
     });
 
-    it('should throw NotFoundException if bar does not exist', async () => {
+    it('should throw NotFoundException if bar does not exist an establishmentId is passed', async () => {
       const dto: CreatQuizDto = {
         title: 'Quiz',
         establishmentId: 999,
@@ -84,7 +84,7 @@ describe('QuizService', () => {
       );
     });
 
-    it('should throw NotFoundException if theme does not exist', async () => {
+    it('should throw NotFoundException if theme does not exist and themeId is passed', async () => {
       const dto: CreatQuizDto = {
         title: 'Quiz',
         establishmentId: 1,

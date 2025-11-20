@@ -7,9 +7,20 @@ export class QuizRepository {
   constructor(private prisma: PrismaService) {}
 
   create(data: CreatQuizDto) {
-    return this.prisma.quiz.create({ data });
+    Object.keys(data).forEach(
+      (key) => data[key] === undefined && delete data[key],
+    );
+    return this.prisma.quiz.create({ data: { title: data.title,
+      externalUrl: data.externalUrl,
+      description: data.description,
+      
+      ...(data.establishmentId && { establishmentId: data.establishmentId }),
+      ...(data.themeId && { themeId: data.themeId }),}   
+    }  
+  
+    );
   }
-
+  
   findAll() {
     return this.prisma.quiz.findMany();
   }

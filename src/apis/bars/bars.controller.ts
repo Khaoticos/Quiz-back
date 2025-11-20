@@ -14,6 +14,7 @@ import {
   ApiOperation,
   ApiResponse,
   ApiBearerAuth,
+  ApiBody,
 } from '@nestjs/swagger';
 
 import { BarService } from './bars.service';
@@ -29,6 +30,21 @@ export class BarController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('jwt-auth')
   @ApiOperation({ summary: 'Create a new bar establishment' })
+  @ApiBody({
+    type: CreateBarDto,
+    examples: {
+      example: {
+        summary: 'Create a new bar',
+        value: {
+        name: 'Pub House',
+        type: 'Pub',
+        description: 'A cool bar with live music',
+        openingHours: '18:00 - 04:00',
+        address: '123 Main St',
+        phone: '+1 555-1234',
+        email: 'contact@pubhouse.com',
+        customUrl: 'pub-house',
+        imageId: 'image-id-1',}}}})
   @ApiResponse({
     status: 201,
     description: 'Bar successfully created',
@@ -37,13 +53,13 @@ export class BarController {
         id: 1,
         name: 'Pub House',
         type: 'Pub',
-        fullDescription: 'A cool bar with live music',
-        briefDescription: 'Live music every night',
+        description: 'A cool bar with live music',
         openingHours: '18:00 - 04:00',
         address: '123 Main St',
         phone: '+1 555-1234',
         email: 'contact@pubhouse.com',
         customUrl: 'pub-house',
+        imageId: 'image-id-1',
         createdAt: '2024-01-01T12:00:00.000Z',
         quizes: [
           {
@@ -73,14 +89,14 @@ export class BarController {
           id: 1,
           name: 'Pub House',
           type: 'Pub',
-          fullDescription: 'A cool bar with live music',
-          briefDescription: 'Live music every night',
+          description: 'A cool bar with live music',
           openingHours: '18:00 - 04:00',
           address: '123 Main St',
           phone: '+1 555-1234',
           email: 'contact@pubhouse.com',
           customUrl: 'pub-house',
           createdAt: '2024-01-01T12:00:00.000Z',
+          imageId: 'image-id-1',
         },
       ],
     },
@@ -98,14 +114,14 @@ export class BarController {
         id: 1,
         name: 'Pub House',
         type: 'Pub',
-        fullDescription: 'A cool bar with live music',
-        briefDescription: 'Live music every night',
+        description: 'A cool bar with live music',
         openingHours: '18:00 - 04:00',
         address: '123 Main St',
         phone: '+1 555-1234',
         email: 'contact@pubhouse.com',
         customUrl: 'pub-house',
         createdAt: '2024-01-01T12:00:00.000Z',
+        imageId: 'image-id-1',
       },
     },
   })
@@ -126,13 +142,13 @@ export class BarController {
         id: 1,
         name: 'Pub House Updated',
         type: 'Pub',
-        fullDescription: 'A cool bar with live music',
-        briefDescription: 'Live music every night',
+        description: 'A cool bar with live music',
         openingHours: '18:00 - 04:00',
         address: '123 Main St',
         phone: '+1 555-1234',
         email: 'contact@pubhouse.com',
         customUrl: 'pub-house',
+        imageId: 'image-id-1',
         createdAt: '2024-01-01T12:00:00.000Z',
       },
     },

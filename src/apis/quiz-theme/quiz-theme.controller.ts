@@ -14,6 +14,7 @@ import {
   ApiOperation,
   ApiResponse,
   ApiBearerAuth,
+  ApiBody,
 } from '@nestjs/swagger';
 
 import { QuizThemeService } from './quiz-theme.service';
@@ -29,6 +30,19 @@ export class QuizThemeController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('jwt-auth')
   @ApiOperation({ summary: 'Create a new quiz theme' })
+  @ApiBody({
+    type: CreatQuizThemeDto,
+    examples: {
+      example: {
+        summary: 'Create a new quiz theme',
+        value: {
+          type: 'Science',
+          description: 'a lot of things nobody understands', 
+          imageId: 'image-id-1' 
+        },
+      },
+    },
+  })
   @ApiResponse({
     status: 201,
     description: 'Quiz theme successfully created',
@@ -36,6 +50,8 @@ export class QuizThemeController {
       example: {
         id: 1,
         type: 'Science',
+        description: 'a lot of things nobody understands',
+        imageId: 'image-id-1' 
       },
     },
   })
@@ -50,8 +66,8 @@ export class QuizThemeController {
     description: 'Array of quiz themes',
     schema: {
       example: [
-        { id: 1, type: 'Science' },
-        { id: 2, type: 'Movies' },
+        { id: 1, type: 'Science', description: 'a lot of things nobody understands', imageId: 'image-id-1'  },
+        { id: 2, type: 'Movies', description: 'only the funny stuff', imageId: 'image-id-2' },
       ],
     },
   })
@@ -68,6 +84,8 @@ export class QuizThemeController {
       example: {
         id: 1,
         type: 'Science',
+        description: 'a lot of things nobody understands',
+        imageId: 'image-id-1',
         quizes: [
           {
             id: 1,

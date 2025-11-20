@@ -13,15 +13,20 @@ export class QuizService {
   ) {}
 
   async create(dto: CreatQuizDto) {
-    const bar = await this.barRepository.findById(dto.establishmentId);
-    if (!bar)
-      throw new NotFoundException(
-        `Bar with id ${dto.establishmentId} not found`,
-      );
+    if (dto.establishmentId) {
+      const bar = await this.barRepository.findById(dto.establishmentId);
+      if (!bar)
+        throw new NotFoundException(
+          `Bar with id ${dto.establishmentId} not found`,
+        );
+    }
 
-    const theme = await this.quizThemRepository.findById(dto.themeId);
-    if (!theme)
-      throw new NotFoundException(`Theme with id ${dto.themeId} not found`);
+    if (dto.themeId) {
+      const theme = await this.quizThemRepository.findById(dto.themeId);
+      if (!theme)
+        throw new NotFoundException(`Theme with id ${dto.themeId} not found`);
+    }
+    
     return this.quizRepository.create(dto);
   }
 
